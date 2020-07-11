@@ -32,7 +32,7 @@
         <div class="contenedor">
             <section class="contenido-header">
                 <section class="textos-header">
-                    <h1 class="title">Sumate al ahorro energético prueba github</h1>
+                    <h1 class="title">Sumate al ahorro energético prueba github 1</h1>
                     <p class="parrafo-ptincipal">No hay otra forma mejor de ayudar al medio ambiente que practicando un consumo responsable.</p>
                     <a href="login/ingresar.php">Iniciar sesión</a>
                 </section>
