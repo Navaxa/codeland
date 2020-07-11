@@ -7,15 +7,18 @@ class Usuarios
     private function __construct()
     {
         try {
-            #$this->dbh = new PDO('mysql:host=localhost;dbname=areaenergetica', 'root', 'pass1234');
-            $this->dbh = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "{Pass1234}");
-            $this->dbh->exec("SET CHARACTER SET utf8");
-            $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage();
-            die();
-        }
+    $conn = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "{Pass1234}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "nava-admin", "pwd" => "{your_password_here}", "Database" => "area-energetica", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:enerfy-server.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
     }
  
     public static function singleton()
