@@ -6,19 +6,18 @@ class Usuarios
  
     private function __construct()
     {
-        try {
-    $conn = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "Pass1234");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+	    
+	    $serverName = "enerfy-server.database.windows.net\sqlexpress"; //serverName\instanceName
+$connectionInfo = array( "Database"=>"area-energetica", "UID"=>"nava-admin", "PWD"=>"Pass1234");
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "nava-admin", "pwd" => "Pass1234", "Database" => "area-energetica", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:enerfy-server.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
+if( $conn ) {
+     echo "Conexión establecida.<br />";
+}else{
+     echo "Conexión no se pudo establecer.<br />";
+     die( print_r( sqlsrv_errors(), true));
+}
+	    
     }
  
     public static function singleton()
