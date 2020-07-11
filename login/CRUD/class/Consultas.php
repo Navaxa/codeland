@@ -7,7 +7,7 @@ class Usuarios
     private function __construct()
     {
 	    
-	    $serverName = "enerfy-server.database.windows.net\Navaxa"; //serverName\instanceName
+	    $serverName = "enerfy-server.database.windows.net\NAVAXA"; //serverName\instanceName
 $connectionInfo = array( "Database"=>"area-energetica", "UID"=>"nava-admin", "PWD"=>"Pass1234");
 $conn = sqlsrv_connect( $serverName, $connectionInfo);
 
