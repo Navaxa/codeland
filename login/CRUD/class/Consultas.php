@@ -7,7 +7,7 @@ class Usuarios
     private function __construct()
     {
         try {
-    $conn = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "Pass1234");
+    $conn = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "{Pass1234}");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
@@ -16,7 +16,7 @@ catch (PDOException $e) {
 }
 
 // SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "nava-admin", "pwd" => "Pass1234", "Database" => "area-energetica", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$connectionInfo = array("UID" => "nava-admin", "pwd" => "{Pass1234}", "Database" => "area-energetica", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:enerfy-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
     }
