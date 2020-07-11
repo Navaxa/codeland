@@ -7,7 +7,8 @@ class Usuarios
     private function __construct()
     {
         try {
-            $this->dbh = new PDO('mysql:host=localhost;dbname=areaenergetica', 'root', 'pass1234');
+            #$this->dbh = new PDO('mysql:host=localhost;dbname=areaenergetica', 'root', 'pass1234');
+            $this->dbh = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "Pass1234");
             $this->dbh->exec("SET CHARACTER SET utf8");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
