@@ -27,15 +27,12 @@
                 <div class="hamburguer">
                     <i class="fas fa-bars"></i>
                 </div>
-                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
-    <script src="index/js/main.js"></script>
             </section>
         </nav>
         <div class="contenedor">
             <section class="contenido-header">
                 <section class="textos-header">
-                    <h1 class="title">Sumate al ahorro energético</h1>
+                    <h1 class="title">Sumate al ahorro energético Un Saludo!!!</h1>
                     <p class="parrafo-ptincipal">No hay otra forma mejor de ayudar al medio ambiente que practicando un consumo responsable.</p>
                     <a href="login/ingresar.php">Iniciar sesión</a>
                 </section>
@@ -173,7 +170,9 @@
             </div>
         </div>
     </footer>
-    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
+    <script src="index/js/main.js"></script>
 </body>
 
 </html>
