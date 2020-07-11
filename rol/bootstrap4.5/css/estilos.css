@@ -1,0 +1,308 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.interes{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.nombre, .descripcion, .servicio, .boton{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+div h6{
+    font-weight: 700;
+}
+.boton{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.negociar{
+    background: #1167a0;
+    width: 100%;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+    cursor: pointer;
+    
+}
+.negociar:hover{
+    color: white;
+    text-decoration: none;
+}
+.activo{
+    background: rgba(0, 0, 0, 0.1);
+}
+.form{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.guardar{
+    padding: 10px;
+    border: none;
+}
+.cajon{
+    width: 100%;
+    padding: 10px;
+}
+.direccion{
+    margin: 5px;
+}
+.dir{
+    justify-content: center;
+    align-items: center;
+}
+span{
+    font-weight: 100;
+}
+.box{
+    background: #ededf4;
+    border-radius: 3px;
+    width: 100%;
+    margin-right: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.box-derecha{
+    background: #FFF;
+    border-radius: 3px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 
+       inset 0 -3em 3em rgba(0,0,0,0.1), 
+             0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.1);
+}
+a.menu{
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    font-weight: 300;
+    color: #1d273b;
+    width: 100%;
+}
+a.menu:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+.proveedor{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    align-items: center;
+    padding: 5px 5px 0 5px;
+    margin: 0;
+}
+.logo{
+    border-radius: 10%;
+}
+.proveedor-logo{
+    width: 100%;
+}
+.proveedor-logo img{
+    width: 100%;
+}
+.proveedor-des{
+    width: 100%;
+}
+.proveedor-des-web{
+    width: 100%;
+    text-align: center;
+    border: 2px solid #1167a0;
+    transition-duration: 0.4s;
+}
+.proveedor-des-web:hover{
+    background: #1167a0;
+}
+.proveedor-des-web a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 400;
+    font-size: 20px;
+    width: 100%;
+    text-transform: uppercase;
+}
+.proveedor-des-web a:hover{
+    color: white;
+}
+.solicitud{
+    width: 100%;
+}
+.servicios-solicitud input, .descripcion-solicitud textarea{
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 2px solid #1167a0;
+}
+.servicios-solicitud, .descripcion-solicitud{
+    width: 100%;
+    padding: 19px;
+}
+.boton-solicitud{
+    width: 100%;
+    padding: 5px;
+    background: #1167a0;
+    color: #FFF;
+    font-size: 20px;
+    border: 2px dotted #000;
+}
+.boton-solicitud:hover{
+    background: transparent;
+    color: #000;
+}
+.masinfo{
+    width: 100%;
+    margin: auto;
+}
+.info-cliente{
+    float: left;
+    width: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #ededf4;
+    padding: 10px 30px;
+}
+.contacto-cliente{
+    float: left;
+    width: 20%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 30px;
+}
+.contacto-cliente-datos{
+    width: 100%;
+    display: flex;
+}
+.contacto-cliente-boton{
+    background: #1167a0;
+    font-size: 20px;
+    border: 2px dotted #000;
+    padding: 5px;
+    text-align: center;
+    width: 100%;    
+    display: flex;
+}
+.contacto-cliente-boton a{
+    text-decoration: none;
+    color: #FFF;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
+textarea{
+    width: 100%;
+}
+.contacto-cliente-boton button{
+    color: #FFF;
+    background: transparent;
+    width: 100%;
+    border: none;
+}
+.estado_propues{
+    width: 70%;
+    background: #39ca0d;
+    text-align: center;
+    color: white;
+    padding: 5px;
+}
+.solicitud-aplicada{
+    width: 100%;
+    background: #1167a0;
+    text-align: center;
+    color: white;
+    padding: 5px;
+}
+
+.contenedor-propuesta{
+    display: flex;
+}
+.contrato-final{
+    display: flex;
+}
+.encabezado-contrato, .encabezado-datos-proveedor{
+    text-align: center;
+    width: 100%;
+}
+.cuerpo-contrato{
+    color: #FFF;
+    font-size: 17px;
+    padding: 10px;
+    letter-spacing: 3px;
+}
+.contrato-official{
+    background: #39ca0d;
+    display: inline-block;  
+    width: 60%;
+    text-align: justify;
+}
+h5.tile-contrato{
+    color: #FFF;
+    font-size: 40px;
+    letter-spacing: 10px;  
+}
+h5.title-datos{
+    color: #FFF;
+    font-size: 28px;
+    letter-spacing: 3px;
+}
+.proveedor-solicitado{
+    background: #1d273b;
+    display: inline-block;
+    width: 40%;
+    text-align: justify;
+}
+.proveedor-solicitado p{
+    color: #FFF;
+    opacity: .8;
+}
+.proveedor-solicitado h6{
+    color: #FFF;
+    opacity: .8;
+}
+
+@media screen and (max-width: 600px) {
+    .proveedor-logo{
+        width: 30%;
+    }
+    .proveedor-des{
+        width: 70%;
+        padding-left: 20px;
+    }
+    .info-cliente{
+        width: 100%;
+    }
+    .contacto-cliente{
+        width: 100%;
+    }
+    .contacto-cliente-datos{
+        text-align: center;
+    }
+    .estado_propues{
+        width: 100%;  
+    margin: 0;
+    }
+    .contrato-final{
+        display: inline;
+    }
+    .contrato-official{
+        width: 100%;
+        display:block;
+        
+    }
+    .proveedor-solicitado{
+        width: 100%;
+        display: block;
+    }
+    h5.tile-contrato{
+        letter-spacing: 10px;
+        font-size: 20px;
+    }
+    h5.title-datos{
+        font-size: 20px;
+    }
+    .encabezado-datos-proveedor{
+        text-align: left;
+    }
+    .cuerpo-contrato{
+        letter-spacing: 1px;
+        font-size: 15px;
+        padding: 5px;
+    }
+    
+  }
