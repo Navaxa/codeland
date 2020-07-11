@@ -27,6 +27,9 @@
                 <div class="hamburguer">
                     <i class="fas fa-bars"></i>
                 </div>
+                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
+    <script src="index/js/main.js"></script>
             </section>
         </nav>
         <div class="contenedor">
@@ -170,9 +173,7 @@
             </div>
         </div>
     </footer>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
-    <script src="index/js/main.js"></script>
+    
 </body>
 
 </html>
