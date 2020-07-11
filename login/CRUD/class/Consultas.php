@@ -6,6 +6,7 @@ class Usuarios
  
     private function __construct()
     {
+<<<<<<< HEAD
         try {
             #$this->dbh = new PDO('mysql:host=localhost;dbname=areaenergetica', 'root', 'pass1234');
             $this->dbh = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "Pass1234");
@@ -16,6 +17,20 @@ class Usuarios
             print "Error!: " . $e->getMessage();
             die();
         }
+=======
+	    
+	    $serverName = "enerfy-server.database.windows.net\NAVAXA"; //serverName\instanceName
+$connectionInfo = array( "Database"=>"area-energetica", "UID"=>"nava-admin", "PWD"=>"Pass1234");
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+if( $conn ) {
+     echo "Conexión establecida.<br />";
+}else{
+     echo "Conexión no se pudo establecer.<br />";
+     die( print_r( sqlsrv_errors(), true));
+}
+	    
+>>>>>>> 82df8d6cabcc28a41a2bf11fe4dbf00adc30f2d5
     }
  
     public static function singleton()
