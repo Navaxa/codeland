@@ -99,7 +99,7 @@
              $numedoDeUsuarios = $fila['count(*)'];
             }
         }
-
+        echo $numedoDeUsuarios;
         $data = $usuarios->get_numeroDeProveedores();
         $numedoDeProveedores = 0;
         if(count($data)){
@@ -107,6 +107,7 @@
                 $numedoDeProveedores = $fila['count(*)'];
             }
         }
+    echo $numedoDeUsuarios;
     ?>
 
     <section class="results">
