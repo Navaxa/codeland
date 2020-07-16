@@ -1,0 +1,141 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: white;
+}
+.contenido-nuevo-articulo{
+    width: 100%;
+    margin: auto;
+    padding: 100px;
+    background: #FFF;
+}
+.articulo-nuevo{
+    width: 100%;
+    text-align: center;
+}
+.articulo-nuevo input{
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border: 1px solid #0069A8;
+    height: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: black;
+    font-size: 15px;
+}
+.articulo-nuevo input:hover{
+    transition: all .2s ease;
+    border: 2px solid #0069A8;
+}
+.articulo-nuevo textarea{
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border: 1px solid #0069A8;
+    padding: 15px;
+    color: black;
+    font-size: 15px;
+}
+.articulo-nuevo button{
+    float: right;
+    color: white;
+    background: #0069A8;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    
+}
+.articulo-nuevo button:hover{
+    cursor: pointer;
+    background: rgba(0, 105, 168, 0.9);
+}
+::placeholder{
+    opacity: .8;
+    padding-left: 5px;
+    font-size: 15px;
+}
+.articulo-nuevo label{
+    color: white;
+    background: #0069A8;
+    padding: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.etiqueta{
+    color: white;
+    background: #0069A8;
+    border: none;
+    padding: 2px;
+}
+.contenido-articulo{
+    margin: 30px;
+    width: 60%;
+}
+.titulo-articulo{
+    width: 100%;
+    text-align: center;
+    color: black;
+}
+.autor-articulo{
+    color: black;
+    width: 100%;
+}
+.autor-articulo span{
+    opacity: .8;
+}
+.fecha-articulo span{
+    color: black;
+}
+.contenido{
+    text-align: justify;
+    color: black;
+    opacity: .9;
+    font-size: 15px;
+}
+.mascontenido{
+    width: 30%;
+    margin: 30px;
+    color: black;
+    background: #F2F2F2;
+}
+.informacion{
+    width: 100%;
+    display: flex;
+}
+/*estilos para imagen de post en index.php*/
+img{
+    width: 320px;
+    height: 240px;
+}
+.one_third{
+    margin: 10px;
+}
+@media only screen and (max-width: 600px) {
+    .contenido-nuevo-articulo{
+        padding: 20px;
+    }
+    .articulo-nuevo button{
+        width: 100%;
+    }
+    .etiqueta{
+        width: 100%;
+    }
+    .informacion{
+        display: block;
+    }
+    .contenido-articulo{
+        padding: 10px;
+        width: 100%;
+    }
+    .mascontenido{
+        width: 100%;
+        margin: 30px;
+        color: black;
+        background: #F2F2F2;
+    }
+  }

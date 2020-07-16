@@ -1,0 +1,29 @@
+*{
+	margin:0;
+	padding: 0;
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+.registro{
+    margin: 30px;
+    padding: 20px;
+    background: #22ff52;
+    opacity: .8;
+    text-align: center;
+}
+.registro h1{
+    color: white;
+    font-weight: 300;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+.registro a{
+    text-decoration: none;
+    background:rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 200;
+    opacity: .5;
+}

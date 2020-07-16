@@ -7,8 +7,8 @@ class Usuarios
     private function __construct()
     {
         try {
-            #$this->dbh = new PDO('mysql:host=localhost;dbname=areaenergetica', 'root', 'pass1234');
-            $this->dbh = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "Pass1234");
+            $this->dbh = new PDO('mysql:host=localhost;dbname=areaenergetica', 'root', 'pass1234');
+            #$this->dbh = new PDO("sqlsrv:server = tcp:enerfy-server.database.windows.net,1433; Database = area-energetica", "nava-admin", "Pass1234");
             $this->dbh->exec("SET CHARACTER SET utf8");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -257,17 +257,18 @@ class Usuarios
         }
     }
 
-    public function Insertar_notificacion($nombre_Cliente, $email_Cliente, $nombreProveedor, $email, $propuesta,$id_interes, $estado_noticia)
+    public function Insertar_notificacion($nombre_Cliente, $email_Cliente, $nombreProveedor, $email, $propuesta,$id_interes, $oferta, $estado_noticia)
     {
         try {
-            $query = $this->dbh->prepare("INSERT INTO notificaciones VALUES(null,?,?,?,?,?,CURRENT_TIMESTAMP,?,?)"); 
+            $query = $this->dbh->prepare("INSERT INTO notificaciones VALUES(null,?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?)"); 
             $query->bindParam(1, $nombre_Cliente);
             $query->bindParam(2, $email_Cliente);
             $query->bindParam(3, $nombreProveedor);
             $query->bindParam(4, $email); 
             $query->bindParam(5, $propuesta);
             $query->bindParam(6, $id_interes);
-            $query->bindParam(7, $estado_noticia);         
+            $query->bindParam(7, $oferta);
+            $query->bindParam(8, $estado_noticia);         
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -307,8 +308,21 @@ class Usuarios
     public function detalle_notificacion($id)
     {
         try {
-            $query = $this->dbh->prepare("SELECT email_proveedor, propuesta FROM notificaciones WHERE id_solicitud = ?");          
+            $query = $this->dbh->prepare("SELECT email_proveedor, propuesta, oferta FROM notificaciones WHERE id_solicitud = ?");          
             $query->bindParam(1, $id);
+            $query->execute();
+            return $query->fetchAll();
+            $this->dbh = null;
+        }catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    public function verificar($id, $email_proveedor)
+    {
+        try {
+            $query = $this->dbh->prepare("SELECT propuesta, oferta FROM notificaciones WHERE id_solicitud = ? AND email_proveedor = ?");          
+            $query->bindParam(1, $id);
+            $query->bindParam(2, $email_proveedor);
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
@@ -379,7 +393,7 @@ class Usuarios
         }
     }
 
-    public function Lee_Contrato($id_cliente, $id_proveedor)
+    public function Lee_Contrato($id_cliente, $id_proveedor) 
     {
         try {
             $query = $this->dbh->prepare("SELECT id FROM contrato WHERE id_cliente = ? AND id_proveedor = ?");
@@ -396,12 +410,12 @@ class Usuarios
     public function Hacer_Contrato($nom_cliente, $id_cliente, $nombre_proveedor, $id_proveedor, $id_solicitud)
     {
         try {
-            $query = $this->dbh->prepare("INSERT INTO contrato VALUES(null,?,?,?,?)"); 
+            $query = $this->dbh->prepare("INSERT INTO contrato VALUES(null,?,?,?,?,?)"); 
             $query->bindParam(1, $nom_cliente);
             $query->bindParam(2, $id_cliente);
             $query->bindParam(3, $nombre_proveedor);
             $query->bindParam(4, $id_proveedor);   
-            $query->bindParam(4, $id_solicitud);            
+            $query->bindParam(5, $id_solicitud);            
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;

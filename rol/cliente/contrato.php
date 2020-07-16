@@ -102,8 +102,11 @@
             }
         }
 
-        if(!isset($id_contrato)){
+        if(isset($id_contrato)){
+            #$data = $usuarios->Hacer_Contrato($nom_cliente, $id_cliente, $nombre_proveedor, $id_proveedor, $id_solicitud);              
+        }else{
             $data = $usuarios->Hacer_Contrato($nom_cliente, $id_cliente, $nombre_proveedor, $id_proveedor, $id_solicitud);              
+
         }
 
         

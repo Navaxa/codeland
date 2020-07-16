@@ -35,6 +35,12 @@
     <link rel="stylesheet" href="../bootstrap4.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap4.5/css/estilos.css">
     <title>Detalles solicitud</title>
+    <script type="text/javascript">
+        function habilitar(){
+            var proveedor = document.getElementById("<?php echo $id_p;?>");
+                proveedor.innerHTML="Ver datos";
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -98,7 +104,11 @@
         }
     ?>
 
-    
+    <?php
+        if(isset($id_contrato)){
+            echo "ya has aceotado una propuesta";
+        }
+    ?>
     <?php
         
         $data = $usuarios->detalle_notificacion($detalle_solicitud);
@@ -106,6 +116,7 @@
                 foreach ($data as $fila) {
                                $email_proveedor=$fila['email_proveedor'];
                                $propuesta = $fila['propuesta'];
+                               $oferta=$fila['oferta'];
                                $data2 = $usuarios->Read_a_datos_proveedor($email_proveedor);
                                if(count($data2)){
                                 foreach ($data2 as $fila2) {
@@ -122,14 +133,14 @@
                                     $logo=$fila2['logo'];
 
                                     ?>
-                        <section class="container contenedor-propuesta mt-5" >
+                        <section class="container contenedor-propuesta mt-5">
                             <div class="container masinfo pb-5">
                                 <div class="estado_propues">
                                     <h4><?php echo $empresa;?></h4>
                                 </div>
                                 <div class="info-cliente">
                                     <div class="info-cliente-des">
-                                        <h6>Oferta</h6>
+                                        <h6>Oferta <span>$<?php echo $oferta; ?> MXN</span></h6>
                                         <p><?php echo $propuesta; ?></p>
                                     </div>
                                     <div class="info-cliente-servicio">
@@ -151,12 +162,15 @@
                                             <h6>Proveedor: <?php echo $nombre;?></h6>
                                     </div>
                                     <div class="contacto-cliente-boton">
-                                        <a href="contrato.php?idp=<?php echo $id_proveedor;?>&ids=<?php echo $detalle_solicitud;?>" >Aceptar</a>
+                                        <a id="<?php echo $id_proveedor;?>" href="contrato.php?idp=<?php echo $id_proveedor;?>&ids=<?php echo $detalle_solicitud;?>" >Aceptar</a>
+                                    </div>
+                                    <div class="contacto-cliente-boton mt-2">
+                                        <a href="estadisticas.php?idp=<?php echo $id_proveedor;?>&ids=<?php echo $detalle_solicitud;?>">Estadisticas</a>
                                     </div>
                                 </div>
                             </div>
                         </section>
-                          
+                        
                                     <?php
                                 }
                             }
@@ -165,7 +179,7 @@
             }
 
     ?>
-    
+   <script>habilitar();</script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

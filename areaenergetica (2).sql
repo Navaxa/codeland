@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-07-2020 a las 19:04:00
+-- Tiempo de generación: 16-07-2020 a las 07:49:48
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -41,7 +41,8 @@ CREATE TABLE `contrato` (
 --
 
 INSERT INTO `contrato` (`id`, `nombre_cliente`, `id_cliente`, `nombre_proveedor`, `id_proveedor`, `id_solicitud`) VALUES
-(1, 'Jonathan', 1, 'Miguel Nava', 1, 3);
+(1, 'Jonathan', 1, 'Miguel Nava', 1, 3),
+(2, 'Anel', 4, 'Miguel Nava', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,8 @@ CREATE TABLE `datos_usuario_cliente` (
 --
 
 INSERT INTO `datos_usuario_cliente` (`id`, `nombre`, `dedicacion`, `telefono`, `estado`, `calle`, `cp`, `acerca_de`, `email`, `facebook`, `foto_perfil`) VALUES
-(1, 'Jonathan', 'Asesor', '555333241', 'Hidalgo', 'Shaghun', '44029', 'En busca de servicios de energías renovable', '15030371@itesa.edu.mx', '', 'perfildeusuario.jpg');
+(1, 'Jonathan', 'Asesor', '555333241', 'Hidalgo', 'Shaghun', '44029', 'En busca de servicios de energías renovable', '15030371@itesa.edu.mx', '', 'perfildeusuario.jpg'),
+(4, 'Anel', 'Asesor de finanzas', '5540988390', 'Colima', 'Zaragoza', '90020', 'Busco encontrar el mejor proveedor que se adapte a mis necesidades', 'anel@gmail.com', '', 'user.png');
 
 -- --------------------------------------------------------
 
@@ -119,10 +121,9 @@ CREATE TABLE `intereses` (
 --
 
 INSERT INTO `intereses` (`id`, `nombre`, `descripcion`, `servicio`, `email`) VALUES
-(1, 'Juan', 'Requiero instalación de paneles solares en el hotel n.', 'Paneles Solares', ''),
-(2, 'Pedro', 'Solicito instalación inmediata de estructuras solares. Se necesita de un buen trabajo de instalación.', 'Estructuras Solares', ''),
 (3, 'Jonathan', 'Necesito instalar paneles solares urgente.', 'Instalación de paneles solares', '15030371@itesa.edu.mx'),
-(6, 'Jonathan', 'Nuevamente aquí!! Solicito instalación inmediata de paneles solares.', 'Paneles Solares', '15030371@itesa.edu.mx');
+(6, 'Jonathan', 'Nuevamente aquí!! Solicito instalación inmediata de paneles solares.', 'Paneles Solares', '15030371@itesa.edu.mx'),
+(7, 'Anel', 'Solicito instalación inmediata de paneles solares. Es para mi hogar.', 'Instalación de paneles solares', 'anel@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -139,6 +140,7 @@ CREATE TABLE `notificaciones` (
   `propuesta` text NOT NULL,
   `fecha` datetime NOT NULL,
   `id_solicitud` int(11) NOT NULL,
+  `oferta` bigint(20) NOT NULL,
   `estado_notificacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -146,9 +148,12 @@ CREATE TABLE `notificaciones` (
 -- Volcado de datos para la tabla `notificaciones`
 --
 
-INSERT INTO `notificaciones` (`id`, `nombre_cliente`, `email_cliente`, `nombre_proveedor`, `email_proveedor`, `propuesta`, `fecha`, `id_solicitud`, `estado_notificacion`) VALUES
-(6, 'Jonathan', '15030371@itesa.edu.mx', 'Miguel Nava', '15030463@itesa.edu.mx', 'Hola Jonathan tenemos amplia experiencia en lo que necesitas acepta nuestra propuesta y enseguida trabajaremos en tu petición', '2020-07-08 03:54:22', 3, 1),
-(7, 'Jonathan', '15030371@itesa.edu.mx', 'Angel Zavala', 'guiguelangel@gmail.com', 'Somo experto en el área por $100,000 te instalamos todo y te capacitamos y daremos soporte durante un mes.', '2020-07-09 03:33:36', 3, 1);
+INSERT INTO `notificaciones` (`id`, `nombre_cliente`, `email_cliente`, `nombre_proveedor`, `email_proveedor`, `propuesta`, `fecha`, `id_solicitud`, `oferta`, `estado_notificacion`) VALUES
+(6, 'Jonathan', '15030371@itesa.edu.mx', 'Miguel Nava', '15030463@itesa.edu.mx', 'Hola Jonathan tenemos amplia experiencia en lo que necesitas acepta nuestra propuesta y enseguida trabajaremos en tu petición', '2020-07-08 03:54:22', 3, 0, 1),
+(7, 'Jonathan', '15030371@itesa.edu.mx', 'Angel Zavala', 'guiguelangel@gmail.com', 'Somo experto en el área por $100,000 te instalamos todo y te capacitamos y daremos soporte durante un mes.', '2020-07-09 03:33:36', 3, 0, 1),
+(8, 'Anel', 'anel@gmail.com', 'Miguel Nava', '15030463@itesa.edu.mx', 'Hola Anel somos expertos en el área acepta nuestra oferta y en seguida trabajaremos en tu petición.', '2020-07-13 20:55:56', 7, 100000, 1),
+(9, 'Anel', 'anel@gmail.com', 'Angel Zavala', 'guiguelangel@gmail.com', 'Somos expertos en el área por $800,000 te instalamos todo y te capacitamos y daremos soporte durante un mes.', '2020-07-15 01:45:13', 7, 80000, 1),
+(10, 'Anel', 'anel@gmail.com', 'Mulan', 'proveedor1@gmail.com', 'Hola Anel te instalamos todo.', '2020-07-15 23:40:09', 7, 90000, 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +165,7 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `pass` int(20) NOT NULL,
+  `pass` varchar(20) NOT NULL,
   `rol` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -169,10 +174,16 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `pass`, `rol`) VALUES
-(1, 'Miguel Nava', '15030463@itesa.edu.mx', 1234, 'proveedor'),
-(2, 'Jonathan', '15030371@itesa.edu.mx', 1234, 'cliente'),
-(3, 'Angel Zavala', 'guiguelangel@gmail.com', 1234, 'proveedor'),
-(4, 'Mulan', 'proveedor1@gmail.com', 1234, 'proveedor');
+(1, 'Miguel Nava', '15030463@itesa.edu.mx', '1234', 'proveedor'),
+(2, 'Jonathan', '15030371@itesa.edu.mx', '1234', 'cliente'),
+(3, 'Angel Zavala', 'guiguelangel@gmail.com', '1234', 'proveedor'),
+(4, 'Mulan', 'proveedor1@gmail.com', '1234', 'proveedor'),
+(5, 'Joana', 'joana@gmail.com', '12345', 'cliente'),
+(6, 'Key', 'key@gmail.com', 'key', 'cliente'),
+(7, 'Ernesto', 'ernesto@gmail.com', '1234', 'cliente'),
+(8, 'pilar', 'pilar@gmail.com', 'pilar', 'cliente'),
+(9, 'Anel', 'anel@gmail.com', 'minombre', 'cliente'),
+(10, 'Doki', 'doki@gmail.com', 'doki', 'proveedor');
 
 --
 -- Índices para tablas volcadas
@@ -222,13 +233,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_usuario_cliente`
 --
 ALTER TABLE `datos_usuario_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_usuario_proveedor`
@@ -240,19 +251,19 @@ ALTER TABLE `datos_usuario_proveedor`
 -- AUTO_INCREMENT de la tabla `intereses`
 --
 ALTER TABLE `intereses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -20,7 +20,7 @@
                 </div>
                 <div class="enlaces-header">
                     <a href="#">Inicio</a>
-                    <a href="blog/index.html">Blog</a>
+                    <a href="blog/index.php">Blog</a>
                     <a href="#">Nosotros</a>
                     <a href="login/ingresar.php">Ingresar</a>
                 </div>

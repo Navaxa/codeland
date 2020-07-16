@@ -8,6 +8,7 @@
     }
 
     $propuesta = $_POST['propuesta'];
+    $oferta = $_POST['oferta'];
     $solicitud = $_GET['cl'];
     $estado_noticia = 1;
 
@@ -44,6 +45,6 @@
                  
             }
         }
-    $data = $usuarios->Insertar_notificacion($nombre_Cliente, $email_Cliente, $nombreProveedor, $email, $propuesta, $id_interes, $estado_noticia);
+    $data = $usuarios->Insertar_notificacion($nombre_Cliente, $email_Cliente, $nombreProveedor, $email, $propuesta, $id_interes, $oferta, $estado_noticia);
     header("Location:masinfo.php?cl=$id_interes");
 ?>

@@ -255,7 +255,13 @@ h5.title-datos{
     color: #FFF;
     opacity: .8;
 }
-
+.grafica{
+    width: 100%;
+    padding: 50px;
+}
+#restrinccion{
+    visibility: hidden;
+}
 @media screen and (max-width: 600px) {
     .proveedor-logo{
         width: 30%;
@@ -304,5 +310,6 @@ h5.title-datos{
         font-size: 15px;
         padding: 5px;
     }
+
     
   }

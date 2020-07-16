@@ -6,54 +6,6 @@
 	if ($sesion == null || $sesion == '') {
 		header("Location:../../login/ingresar.php");
     }
-    
-    require_once("../../login/CRUD/class/Consultas.php");
-                    $usuarios = Usuarios::singleton();                
-                    $data = $usuarios->get_NotificacionByEmail($email);	
-                    if(count($data)){
-                        foreach ($data as $fila) {
-                            $id_solicitud = $fila['id_solicitud']; 
-                        }
-                    }
-
-                    if(isset($id_solicitud)){
-                        $data = $usuarios->Lee_ContratoExistente($id_solicitud);	
-                        if(count($data)){
-                            foreach ($data as $fila) {
-                                $id_proveedor = $fila['id_proveedor']; 
-                                $id_cliente = $fila['id_cliente']; 
-                                $id_contrato = $fila['id_solicitud'];
-                            }
-                        }
-                    }
-
-                    $data = $usuarios->Read_a_datos_proveedor($email);	
-                    if(count($data)){
-                        foreach ($data as $fila) {
-                            $myID = $fila['id']; 
-
-                        }
-                    }
-                    
-                    
-                    
-                    if(isset($id_proveedor)){
-                            $data = $usuarios->Lee_ClienteExistente($id_cliente);	
-                            if(count($data)){
-                                foreach ($data as $fila) {
-                                    $nombre_cl = $fila['nombre']; 
-                                    $dedicacion=$fila['dedicacion'];
-                                    $telefono = $fila['telefono'];
-                                    $estado=$fila['estado'];
-                                    $calle = $fila['calle'];
-                                    $cp=$fila['cp'];
-                                    $acerca_de=$fila['acerca_de'];
-                                    $facebook=$fila['facebook'];
-                                    $foto_perfil=$fila['foto_perfil'];
-                                }
-                            }
-                    }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,6 +62,89 @@
         </div>
     </section>
     <?php
+    
+    require_once("../../login/CRUD/class/Consultas.php");
+                    $usuarios = Usuarios::singleton();                
+                    $data = $usuarios->get_NotificacionByEmail($email);	
+                    if(count($data)){
+                        foreach ($data as $fila) {
+                            $id_solicitud = $fila['id_solicitud']; 
+
+                            if(isset($id_solicitud)){
+                                $data2 = $usuarios->Lee_ContratoExistente($id_solicitud);	
+                                if(count($data2)){
+                                    foreach ($data2 as $fila2) {
+                                        $id_proveedor = $fila2['id_proveedor']; 
+                                        $id_cliente = $fila2['id_cliente']; 
+                                        $id_contrato = $fila2['id_solicitud']; 
+                                        $data3 = $usuarios->Read_a_datos_proveedor($email);	
+                                        if(count($data3)){
+                                            foreach ($data3 as $fila3) {
+                                                $myID = $fila3['id']; 
+                                            }
+                                        }
+                                        if(isset($id_proveedor)){
+                                            $data = $usuarios->Lee_ClienteExistente($id_cliente);	
+                                            if(count($data)){
+                                                foreach ($data as $fila) {
+                                                    $nombre_cl = $fila['nombre']; 
+                                                    $dedicacion=$fila['dedicacion'];
+                                                    $telefono = $fila['telefono'];
+                                                    $estado=$fila['estado'];
+                                                    $calle = $fila['calle'];
+                                                    $cp=$fila['cp'];
+                                                    $acerca_de=$fila['acerca_de'];
+                                                    $facebook=$fila['facebook'];
+                                                    $foto_perfil=$fila['foto_perfil'];
+                                                    $email_cliente=$fila['email'];
+                                                }
+                                            }
+                                    }
+
+                                        if($id_proveedor != $myID){
+                                            ?>
+                                            <div class="container mt-5">
+                                                <div class="alert alert-secondary">
+                                                    <strong>Lo sentimos <?php echo $nombre_cl ?> ya cerro su solicitud.</strong>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <section class="mt-5 container contrato-final">
+                                                    <div class="contrato-official p-5">
+                                                        <div class="encabezado-contrato">
+                                                            <h5 class="tile-contrato">Felicidades!!! <?php echo $sesion?></h5>
+                                                        </div>
+                                                        <div class="cuerpo-contrato">
+                                                            <p><?php echo $nombre_cl;?> quiere hacer uso de tus servicios, ponte en contacto con <?php echo $nombre_cl;?> a la brevedad.<span></span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="proveedor-solicitado p-5">
+                                                        <div class="encabezado-datos-proveedor">
+                                                            <h5 class="title-datos">Datos de tu Cliente</h5>
+                                                        </div>
+                                                        <p>No olvides los datos de contacto de tu cliente ya que por medio de estos se comunicara contigo.</p>
+                                                        <h6>Nombre: <span><?php if(isset($nombre_cl)){echo $nombre_cl;}else{echo "El cliente no añadido su nombre";}?></span></h6>
+                                                        <h6>Teléfono: <span><?php if(isset($telefono)){echo $telefono;}else{echo "El cliente no ha añadido su número de telefono";} ?></span></h6>
+                                                        <h6>Dirección: <span><?php if(isset($calle)){echo $calle;}else{echo "";} if(isset($estado)){echo ', '.$estado;}else{echo "";}if(isset($cp)){echo ', '.$cp;}else{echo "";}?></span></h6>
+                                                        <h6>Facebook: <span><?php if(isset($facebook)){ if($facebook == ""){echo "No nos ha compartido su Facebook";}{echo '<a href="'.$facebook.'">'.$facebook.'</a>';}}else{echo "El cliente no nos has compartido su Facebook";} ?></span></span></h6>
+                                                        <h6>Email: <?php if(isset($email_cliente)){echo $email_cliente;}else{echo "El cliente no ha añadido su número correo";} ?></h6>
+                                                        
+                                                    </div>
+                                                </section>
+                                            <?php
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+
+?>
+
+    <?php
         if(!isset($id_solicitud)){
             ?>
                 <div class="container mt-5">
@@ -117,18 +152,15 @@
                         <strong>Aun no tienes clientes</strong>
                     </div>
                 </div>
-                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    
+                
             <?php
-            return;
+        
         }
 
     ?>
 
-    <?php
-        if($id_proveedor != $myID){
+    <!--<?php
+        /*if($id_proveedor != $myID){
             ?>
                 <div class="container mt-5">
                     <div class="alert alert-secondary">
@@ -141,32 +173,10 @@
     
             <?php
             return;
-        }
+        }*/
         
-    ?>
+    ?>-->
 
-    <section class="mt-5 container contrato-final">
-        <div class="contrato-official p-5">
-            <div class="encabezado-contrato">
-                <h5 class="tile-contrato">Felicidades!!! <?php echo $sesion?></h5>
-            </div>
-            <div class="cuerpo-contrato">
-                <p><?php echo $nombre_cl;?> quiere hacer uso de tus servicios, ponte en contacto con <?php echo $nombre_cl;?> a la brevedad.<span></span></p>
-            </div>
-        </div>
-        <div class="proveedor-solicitado p-5">
-            <div class="encabezado-datos-proveedor">
-                <h5 class="title-datos">Datos de tu Cliente</h5>
-            </div>
-            <p>No olvides los datos de contacto de tu cliente ya que por medio de estos se comunicara contigo.</p>
-            <h6>Nombre: <span><?php if(isset($nombre_cl)){echo $nombre_cl;}else{echo "El cliente no añadido su nombre";}?></span></h6>
-            <h6>Teléfono: <span><?php if(isset($telefono)){echo $telefono;}else{echo "El cliente no ha añadido su número de telefono";} ?></span></h6>
-            <h6>Dirección: <span><?php if(isset($calle)){echo $calle;}else{echo "";} if(isset($estado)){echo ', '.$estado;}else{echo "";}if(isset($cp)){echo ', '.$cp;}else{echo "";}?></span></h6>
-            <h6>Facebook: <span><?php if(isset($facebook)){ if($facebook == ""){echo "No nos has compartido su Facebook";}{echo '<a href="'.$facebook.'">'.$facebook.'</a>';}}else{echo "El cliente no nos has compartido su Facebook";} ?></span></span></h6>
-            <h6>Email: <?php if(isset($email)){echo $email;}else{echo "El cliente no ha añadido su número correo";} ?></h6>
-            
-        </div>
-    </section>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

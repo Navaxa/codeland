@@ -18,6 +18,15 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Bienvenido</title>
+    <script type="text/javascript">
+        function esconder(){
+            var restringir = document.getElementById("restrinccion");
+            var formulario = document.getElementById("boton");
+            restringir.style.visibility = "visible";
+            formulario.style.cursor = "not-allowed";
+            formulario.disabled = true;
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -66,7 +75,13 @@
         </div>
     </section>
 
-    <section class="container mt-5">
+    <div class="container mt-3" id="restrinccion">
+        <div class="alert alert-secondary">
+            <strong><span>Si quieres solicitar un servicio debes ingresar tus datos de cliente en el apartado de <a href="configc.php">configuraciones</a></span></strong>
+        </div>
+    </div>
+
+    <section class="container">
         <div class="row">
             <div class="col-lg-3 col-md-12 mb-5">
                 <div class="col-lg-12 col-md-12 box">
@@ -130,7 +145,7 @@
                     }
                 }else if($suceso == 0){ 
                     ?>
-                            <form action="solicitud-servicio.php" class="solicitud" method="POST">
+                            <form action="solicitud-servicio.php" class="solicitud" method="POST" >
                                 <div class="servicios-solicitud">
                                     <h5>Servicio:</h5>
                                     <input type="text" placeholder="ejemplo: (Instalación de paneles solares)" name="servicio" required>
@@ -139,7 +154,7 @@
                                     <h5>Descripción de servicio:</h5>
                                     <textarea name="descripcion-servicio" required></textarea>
                                 </div>
-                                <button class="boton-solicitud">Enviar</button>
+                                <button class="boton-solicitud" id="boton">Enviar</button>
                             </form>
                     <?php
                 }
@@ -155,7 +170,21 @@
 
     </section>
 
-
+    <?php
+    require_once("../../login/CRUD/class/Consultas.php");
+        $usuarios = Usuarios::singleton();                
+        $data = $usuarios-> Read_a_datos_cliente($email);	
+        if(count($data)){
+            foreach ($data as $fila) {
+                $id = $fila['id'];
+            }
+        }
+        if(!isset($id)){
+            echo '<script type="text/javascript">
+            esconder();
+        </script>';
+        }
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -20,9 +20,15 @@
         function habilitar(){
             var boton = document.getElementById("boton-aplicar");
             var textarea = document.getElementById("text-area");
+            var oferta = document.getElementById("cotizacion");
                     boton.disabled = true;
                     textarea.disabled = true;
+                    oferta.disabled = true;
                     boton.innerHTML="Has aplicado";
+        }
+        function esconder(){
+            var restringir = document.getElementById("restrinccion");
+            restringir.style.visibility = "visible";
         }
     </script>
 </head>
@@ -64,11 +70,15 @@
             </div>
         </div>
     </nav>
-    
+    <div class="container mt-3" id="restrinccion">
+        <div class="alert alert-secondary">
+            <strong><span>Si quieres negociar debes ingresar tus datos de proveedores en el apartado de <a href="config.php">configuraciones</a></span></strong>
+        </div>
+    </div>
     <?php
-        require_once("../../login/CRUD/class/Consultas.php");
-        $solicitud = $_GET['cl'];
-        $usuarios = Usuarios::singleton();                
+    require_once("../../login/CRUD/class/Consultas.php");
+    $usuarios = Usuarios::singleton(); 
+        $solicitud = $_GET['cl'];           
         $data = $usuarios->get_interese();	
         if(count($data)){
             foreach ($data as $fila) {
@@ -85,7 +95,7 @@
         }
     ?>
 
-    <section class="p-4 mt-5 container">
+    <section class="p-4 container">
         <div class="container masinfo pb-5">
             <div class="estado_propues">
                 <h4>Propuesta abierta</h4>
@@ -103,6 +113,7 @@
                     <h6>Hasle una propuesta a <?php echo $nombre;?></h5>
                     <form action="aplicar.php?cl=<?php echo $id_Cliente;?>" method="POST">
                         <textarea name="propuesta" method="POST" required id="text-area"></textarea>
+                        <h6>Cotización en $MXN: </h6><input type="number" id="cotizacion" required  placeholder="$MXN" name="oferta">
                 </div>
             </div>
             <div class="contacto-cliente mb-5">
@@ -135,9 +146,25 @@
             ?>
         </div>
     </section>    
-
     
+    <?php
+        
+        $usuarios = Usuarios::singleton();                
+        $data = $usuarios->Read_a_datos_proveedor($email);	
+        if(count($data)){
+            foreach ($data as $fila) {
+                $id = $fila['id'];
+                 
+            }
+        }
+        if(!isset($id)){
+            echo '<script type="text/javascript">
+            habilitar();
+            esconder();
+        </script>';
+        }
 
+    ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

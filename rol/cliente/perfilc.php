@@ -70,7 +70,7 @@
 
     <section style="background: #ededf4; text-align: center;" class="p-5">
         <div class="container">
-            <img class="logo" src="../img_perfil/<?php echo $foto_perfil?>" alt="">
+            <img class="logo" src="../img_perfil/<?php echo $foto_perfil?>" alt="" width="15%" height="15%">
             <h1><?php echo $sesion ?></h1>
             <p></p>
         </div>
