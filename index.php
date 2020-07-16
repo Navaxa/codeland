@@ -96,7 +96,7 @@
         $numedoDeUsuarios = 0;
         if(count($data)){
             foreach ($data as $fila) {
-             $numedoDeUsuarios = $fila['count(*)'];
+             $numedoDeUsuarios = $fila['No column name'];
             }
         }
         echo $numedoDeUsuarios;
@@ -132,7 +132,7 @@
             </section>
             <section class="results-text">
                 <h4>Un poco de lo que hemos logrado en Energy solutions</h4> <br>
-                <a href="login/registrar.php">Ingrese aquí</a>
+                <a href="login/login.php">Ingrese aquí</a>
             </section>
         </div>
     </section>
