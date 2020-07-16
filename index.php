@@ -96,7 +96,7 @@
         $numedoDeUsuarios = 0;
         if(count($data)){
             foreach ($data as $fila) {
-             $numedoDeUsuarios = $fila['No column name'];
+             $numedoDeUsuarios = $fila['(No column name)'];
             }
         }
         echo $numedoDeUsuarios;
